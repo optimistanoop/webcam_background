@@ -5,6 +5,8 @@ const startBtn = document.getElementById('start-btn');
 const stopBtn = document.getElementById('stop-btn');
 const blurBtn = document.getElementById('blur-btn');
 const unblurBtn = document.getElementById('unblur-btn');
+const bgBtn = document.getElementById('bg-btn');
+const unbgBtn = document.getElementById('unbg-btn');
 
 const ctx = canvas.getContext('2d');
 
@@ -14,6 +16,8 @@ startBtn.addEventListener('click', e => {
 
   unblurBtn.disabled = false;
   blurBtn.disabled = false;
+  bgBtn.disabled = false;
+  unbgBtn.disabled = false;
 
   startVideoStream();
 });
@@ -24,6 +28,9 @@ stopBtn.addEventListener('click', e => {
 
   unblurBtn.disabled = true;
   blurBtn.disabled = true;
+
+  unbgBtn.disabled = true;
+  bgBtn.disabled = true;
 
   unblurBtn.hidden = true;
   blurBtn.hidden = false;
@@ -41,12 +48,30 @@ blurBtn.addEventListener('click', e => {
   videoElement.hidden = true;
   canvas.hidden = false;
 
-  loadBodyPix();
+  loadBodyPixWithBlurr();
 });
 
 unblurBtn.addEventListener('click', e => {
   blurBtn.hidden = false;
   unblurBtn.hidden = true;
+
+  videoElement.hidden = false;
+  canvas.hidden = true;
+});
+
+bgBtn.addEventListener('click', e => {
+  bgBtn.hidden = true;
+  unbgBtn.hidden = true;
+
+  videoElement.hidden = true;
+  canvas.hidden = false;
+
+  loadBodyPixWithBg();
+});
+
+unbgBtn.addEventListener('click', e => {
+  bgBtn.hidden = false;
+  unbg.hidden = true;
 
   videoElement.hidden = false;
   canvas.hidden = true;
@@ -66,6 +91,7 @@ function startVideoStream() {
     .catch(err => {
       startBtn.disabled = false;
       blurBtn.disabled = true;
+      bgBtn.disabled = true;
       stopBtn.disabled = true;
       alert(`Following error occured: ${err}`);
     });
@@ -78,18 +104,18 @@ function stopVideoStream() {
   videoElement.srcObject = null;
 }
 
-function loadBodyPix() {
+function loadBodyPixWithBlurr() {
   options = {
     multiplier: 0.75,
     stride: 32,
     quantBytes: 4
   }
   bodyPix.load(options)
-    .then(net => perform(net))
+    .then(net => performBlurr(net))
     .catch(err => console.log(err))
 }
 
-async function perform(net) {
+async function performBlurr(net) {
 
   while (startBtn.disabled && blurBtn.hidden) {
     const segmentation = await net.segmentPerson(video);
@@ -102,4 +128,42 @@ async function perform(net) {
       canvas, videoElement, segmentation, backgroundBlurAmount,
       edgeBlurAmount, flipHorizontal);
   }
+}
+
+function loadBodyPixWithBg() {
+  options = {
+    multiplier: 0.75,
+    stride: 32,
+    quantBytes: 4
+  }
+  bodyPix.load(options)
+    .then(net => performBg(net))
+    .catch(err => console.log(err))
+}
+
+async function performBg(net) {
+
+  while (startBtn.disabled && bgBtn.hidden) {
+    const segmentation = await net.segmentPerson(video);
+    drawBody(segmentation)
+    // const coloredPartImage = bodyPix.toMask(segmentation);
+    // const opacity = 0.7;
+    // const maskBlurAmount = 0;
+    // const flipHorizontal = false;
+    // bodyPix.drawMask(canvas, videoElement, coloredPartImage, opacity, maskBlurAmount, flipHorizontal);
+  }
+}
+
+
+function drawBody(personSegmentation){
+    ctx.drawImage(videoElement, 0, 0, videoElement.width, videoElement.height);
+    let imageData = ctx.getImageData(0,0, videoElement.width, videoElement.height);
+    let pixel = imageData.data;
+    for (let p = 0; p<pixel.length; p+=4){
+      if (personSegmentation.data[p/4] == 0) {
+          pixel[p+3] = 0;
+      }
+    }
+    ctx.imageSmoothingEnabled = true;
+    ctx.putImageData(imageData,0,0);
 }

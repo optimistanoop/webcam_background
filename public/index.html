@@ -1,0 +1,86 @@
+<html>
+  <header>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Video Background</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.0"></script>
+    <style>
+    #background-container {
+        height: 369px;
+        width: 100%;
+        background-image: url(tpd.jpg);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color: transparent;
+    }
+
+    #canvas{
+        background-color: transparent;
+        position: absolute;
+        width: 100%;
+        height: 538px;
+        z-index: 9999;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        -moz-transform: scale(-1, 1);
+        -webkit-transform: scale(-1, 1);
+        -o-transform: scale(-1, 1);
+        transform: scale(-1, 1);
+        filter: FlipH;
+    }
+    </style>
+
+  </header>
+
+  <main role="main">
+      <div class="container">
+        <div class="row justify-content-md-center">
+            <center>
+              <p>Wait for sometime to load modal.</p>
+              <div class="card mb-4 shadow-sm">
+                <center>
+                  <video id="video" width="538" height="369" autoplay playsinline></video>
+                </center>
+                <center>
+                    <div id="background-container"></div>
+                    <canvas hidden id="canvas"></canvas>
+                </center>
+                <div class="card-body">
+                  <div class="justify-content-between align-items-center">
+                    <div class="btn-group btn-group-sm">
+                      <button id="start-btn" type="button" class="btn btn-sm btn-outline-success">Start Webcam</button>
+                      <button id="blur-btn" type="button" class="btn btn-sm btn-outline-secondary" disabled>Bookeh effect(background blurr)</button>
+                      <button id="unblur-btn" type="button" class="btn btn-sm btn-outline-secondary" hidden>No effect</button>
+                      <button id="bg-btn" type="button" class="btn btn-sm btn-outline-secondary" disabled>Change BG</button>
+                      <button id="unbg-btn" type="button" class="btn btn-sm btn-outline-secondary" hidden>No effect</button>
+                      <button id="stop-btn" type="button" class="btn btn-sm btn-outline-danger" disabled>Stop Webcam</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </center>
+          </div>
+      </div>
+  </main>
+
+  <script src="video.js"></script>
+  <style>
+    video {
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+    }
+  </style>
+</html>

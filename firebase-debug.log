@@ -1,0 +1,39 @@
+[debug] [2021-04-28T18:00:18.742Z] ----------------------------------------------------------------------
+[debug] [2021-04-28T18:00:18.744Z] Command:       /usr/bin/node /usr/bin/firebase deploy --only hosting
+[debug] [2021-04-28T18:00:18.744Z] CLI Version:   9.10.0
+[debug] [2021-04-28T18:00:18.744Z] Platform:      linux
+[debug] [2021-04-28T18:00:18.744Z] Node Version:  v10.18.0
+[debug] [2021-04-28T18:00:18.744Z] Time:          Wed Apr 28 2021 23:30:18 GMT+0530 (India Standard Time)
+[debug] [2021-04-28T18:00:18.745Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-04-28T18:00:18.752Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-04-28T18:00:18.752Z] > authorizing via signed-in user (anoop@wesense.ai)
+[debug] [2021-04-28T18:00:18.752Z] [iam] checking project wesense-uat for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-04-28T18:00:18.754Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/wesense-uat:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2021-04-28T18:00:21.241Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 28 Apr 2021 18:00:21 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1392","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-28T18:00:21.252Z] > refreshing access token with scopes: []
+[debug] [2021-04-28T18:00:21.253Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-04-28T18:00:22.050Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Wed, 28 Apr 2021 18:00:22 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-28T18:00:22.183Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/wesense-uat [none]
+[debug] [2021-04-28T18:00:22.877Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/wesense-uat 200
+[debug] [2021-04-28T18:00:22.877Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/wesense-uat {"projectId":"wesense-uat","projectNumber":"909221037411","displayName":"clearhealth-uat","name":"projects/wesense-uat","resources":{"hostingSite":"wesense-uat","realtimeDatabaseInstance":"wesense-uat","storageBucket":"wesense-uat.appspot.com","locationId":"us-central"},"state":"ACTIVE"}
+[info] 
+[info] === Deploying to 'wesense-uat'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2021-04-28T18:00:22.882Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-04-28T18:00:22.882Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-04-28T18:00:23.196Z] <<< HTTP RESPONSE 200 {"date":"Wed, 28 Apr 2021 18:00:23 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-04-28T18:00:23.310Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/wesense-uat/versions  
+ {"config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2021-04-28T18:00:25.735Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 28 Apr 2021 18:00:25 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  hosting[wesense-uat]: beginning deploy... 
+[info] i  hosting[wesense-uat]: found 4 files in public 
+[debug] [2021-04-28T18:00:25.749Z] > refreshing access token with scopes: []
+[debug] [2021-04-28T18:00:25.750Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-04-28T18:00:25.751Z] [hosting] hash cache [cHVibGlj] stored for 4 files
+[debug] [2021-04-28T18:00:25.751Z] [hosting][hash queue][FINAL] {"max":3,"min":0,"avg":0.75,"active":0,"complete":4,"success":4,"errored":0,"retried":0,"total":4,"elapsed":6}
